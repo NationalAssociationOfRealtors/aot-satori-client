@@ -6,12 +6,13 @@
   "main": "index.js",
   "repository": {
    "type": "git",
-   "url": ""
+   "url": "https://github.com/NationalAssociationOfRealtors/aot-satori-client"
  },
   "dependencies": {
     "satori-sdk-js": "^1.0.1",
     "satori-rtm-sdk":"^1.0.1",
-    "dotenv":"^4.0.0"
+    "dotenv":"^4.0.0",
+    "pusher-client":"^1.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
