@@ -1,0 +1,21 @@
+{
+  "name": "aot-satori",
+  "version": "1.0.0",
+  "description": "Publish data from the Array of Things project in Chicago to a Satori Open Data Channel",
+  "url": "https://crtlabs.org",
+  "main": "index.js",
+  "repository": {
+   "type": "git",
+   "url": ""
+ },
+  "dependencies": {
+    "satori-sdk-js": "^1.0.1",
+    "satori-rtm-sdk":"^1.0.1",
+    "dotenv":"^4.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Conroy, Chris Coté",
+  "license": "Apache-2.0"
+}
