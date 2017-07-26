@@ -1,7 +1,6 @@
 require('dotenv').config()
 var RTM = require('satori-sdk-js');
 
-
 var endpoint = process.env.ENDPOINT
 var appkey = process.env.APPKEY
 var role = process.env.ROLE
@@ -13,21 +12,19 @@ var rtm = new RTM(endpoint, appkey, {
   authProvider: roleSecretProvider,
 });
 
-
 rtm.start();
 
-var Pusher = require('pusher-client');
+var socket = require('socket.io-client')('ws://streaming.plenar.io?' +
+    'network=array_of_things_chicago');
 
-var pusher = new Pusher(process.env.PLENARIO_KEY, {
-  authEndpoint: process.env.PLENARIO_AUTH_ENDPOINT
+socket.on('data', function (e) {
+        console.log(e);
+        rtm.publish(role, e.attributes, function(pdu) {
+          console.log("Publish ack:", pdu);
+    });
+
 });
 
-var channel = pusher.subscribe('private-array_of_things_chicago;');
-
-channel.bind('data', function(e) {
-  console.log(e);
-  rtm.publish(role, JSON.parse(e.message), function(pdu) {
-    console.log("Publish ack:", pdu);
-  });
-
+socket.on('internal_error', function (err) {
+    console.log(err);
 });
